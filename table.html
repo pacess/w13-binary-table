@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=768, initial-scale=0.5, shrink-to-fit=no">
+		<meta name="description" content="香港「智泉十三 W13」用易經八卦速查表。歡迎其他「智泉」同學使用。" />
+
+		<title>W13 易經八卦速查表</title>
+
+		<link rel="apple-touch-icon" href="./images/icon_72.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="./images/icon_152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="./images/icon_180.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="./images/icon_167.png">
+		<link rel="icon" sizes="192x192" href="./images/icon_180.png">
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+		<style>
+			body  {
+				padding: 10px 0px 10px 0px;
+			}
+			.title  {
+				font-size: 32px;
+				text-decoration: underline;
+				text-align: center;
+			}
+
+			.word  {
+				float: left;
+				color: #800000;
+				font-size: 23px;
+			}
+			.page  {
+				padding-left: 20px;
+				text-align: right;
+				font-size: 14px;
+			}
+			.graph  {
+				line-height: 0.2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-xs-12">
+					<div class="title">W13 易經八卦速查表</div>
+					<div id="table64Container"></div>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+		<script>
+			var _dataArray = {
+				//坤		艮		
+				"坤":55, "剝":203, "比":103, "觀":180, "豫":151, "晉":293, "萃":368, "否":128,
+				"謙":145, "艮":413, "蹇":323, "漸":419, "小過":470, "旅":437, "咸":265, "遯":280,
+				"師":96, "蒙":78, "習坎":249, "渙":453, "解":330, "未濟":482, "困":379, "訟":90,
+				"升":375, "蠱":163, "井":387, "巽":443, "恆":273, "鼎":400, "大過":241, "姤":362,
+				"復":210, "頤":234, "屯":69, "益":346, "震":406, "噬嗑":188, "隨":157, "無妄":219,
+				"明夷":299, "賁":195, "既濟":476, "家人":307, "豐":431, "離":257, "革":394, "同人":134,
+				"臨":173, "損":338, "節":459, "中孚":465, "歸妹":425, "睽":315, "兌":448, "履":114,
+				"泰":120, "大畜":226, "需":84, "小畜":109, "大壯":288, "大有":140, "夬":355, "乾":37,
+			};
+
+			//----------------------------------------------------------------------------------------
+			function getGraphHTML(upper, lower)  {
+				var html = "";
+				var digit = 0;
+				digit = (upper&1)?0:1;  html += "<img src='./images/"+digit+".png' width='80' /><br>";
+				digit = (upper&2)?0:1;  html += "<img src='./images/"+digit+".png' width='80' /><br>";
+				digit = (upper&4)?0:1;  html += "<img src='./images/"+digit+".png' width='80' /><br>";
+				digit = (lower&1)?0:1;  html += "<img src='./images/"+digit+".png' width='80' /><br>";
+				digit = (lower&2)?0:1;  html += "<img src='./images/"+digit+".png' width='80' /><br>";
+				digit = (lower&4)?0:1;  html += "<img src='./images/"+digit+".png' width='80' /><br>";
+				return html;
+			}
+
+			//----------------------------------------------------------------------------------------
+			$(document).ready(function()  {
+
+				var index = 0;
+				var upper = 7;
+				var lower = 8;
+				var html = "<table width='760' cellpadding='10px'>";
+				for (var word in _dataArray)  {
+
+					if (lower == 8)  {html += "<tr>";}
+					lower--;
+
+					var page = _dataArray[word];
+					var graph = getGraphHTML(lower, upper);
+					html += "<td><div class='word'>"+word+"</div><div class='page'>"+page+"</div><div class='graph'>"+graph+"</div></td>";
+
+					if (lower == 0)  {
+						html += "</tr>";
+						lower = 8;
+						upper--;
+					}
+
+				}
+				$("#table64Container").html(html);
+			});
+		</script>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-9975311-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-9975311-2');
+		</script>
+
+	</body>
+</html>
